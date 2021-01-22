@@ -1,14 +1,14 @@
 const expres = require('express');
-// const morgan = require('morgan');
-const helmet = require('helmet');
 const { Sequelize } = require('sequelize');
+const bodyParser = require('body-parser');
+const cors=require('cors')
+const login=require('./users/login');
+const register=require('./users/register')
+const paginate=require('./items/paginate')
+
 const app = expres();
-const getAllUsers = require('./queryTest/getAllUsers')
+app.use(cors());
 
-// app.use(morgan('common'));
-// app.use(helmet())
-
-// const testiraj=require('./models/test');
 
 var sequelize = new Sequelize('ecommerce', 'postgres', 'hacker404', {
     host: 'localhost',
@@ -21,6 +21,10 @@ var sequelize = new Sequelize('ecommerce', 'postgres', 'hacker404', {
     port:5432
   });
 
+
+
+app.use(bodyParser.json());
+
 app.get('/' , async (req,res) => {
     try {
         await sequelize.authenticate();
@@ -29,9 +33,11 @@ app.get('/' , async (req,res) => {
         console.error('Unable to connect to the database:', error);
       }
     //   console.log(getAllUsers());
-      
 }) 
 
+app.use('/users/login',login)
+app.use('/users/register', register)
+app.use('/items/paginate', paginate);
 app.use((req,res,next) => {
     const error=new Error("not found");
     res.status(404);

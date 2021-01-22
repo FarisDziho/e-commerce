@@ -5,14 +5,14 @@ module.exports = {
       id: {
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        primaryKey: true,   
       },
-      name: {
+      title: {
         type: Sequelize.STRING
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       image: {
         type: Sequelize.STRING
@@ -20,15 +20,15 @@ module.exports = {
       price: {
         type: Sequelize.DECIMAL
       },
-      leftInStock: {
-        type: Sequelize.INTEGER
+      category: {
+        type: Sequelize.STRING
       },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       }
     });

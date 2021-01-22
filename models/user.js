@@ -11,20 +11,29 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasOne(models.Cart,{
-        foreignKey: 'UserId',
-      })
+      User.hasOne(models.Cart_User);
     }
   };
-  User.init({
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password:DataTypes.STRING,
-    password: DataTypes.STRING,
-    
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
+  User.init(
+     {
+        name: {
+           type: DataTypes.STRING,
+           allowNull: false,
+        },
+        email: {
+           type: DataTypes.STRING,
+           unique:true,
+           allowNull: false,
+        },
+        password: {
+           type: DataTypes.STRING,
+           allowNull: false,
+        },
+     },
+     {
+        sequelize,
+        modelName: 'User',
+     }
+  );
   return User;
 };

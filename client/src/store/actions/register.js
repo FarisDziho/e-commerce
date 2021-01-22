@@ -1,0 +1,2 @@
+export const PERFORM_REGISTER = 'PERFORM_REGISTER';
+export const SET_ERRORS = 'SET_ERROS';

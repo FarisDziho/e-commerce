@@ -8,28 +8,26 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      // userId: {
-      //   type: Sequelize.INTEGER,
-      //   allowNull:false,
-      //   references:{
-      //     model:'Users',
-      //     key:'id'
-      //   }
-      // },
-      // items: {
-      //   type: Sequelize.ARRAY(Sequelize.INTEGER),
-      //   allowNull:true,
-      //   references:{
-      //     model:'Item',
-      //     key:'id'
-      //   }
-      // },
+      UserId: {
+        type: Sequelize.INTEGER,
+        references:{
+          model:'Users',
+          key:'id'
+        }
+      },
+      ItemId: {
+        type: Sequelize.INTEGER,
+        references:{
+          model:'Items',
+          key:'id'
+        }
+      },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       }
     });
