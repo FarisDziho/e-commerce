@@ -3,6 +3,8 @@ const { User } = require('../../models');
 const jwt = require('jsonwebtoken');
 const { json } = require('body-parser');
 const bcrypt = require ('bcrypt')
+const verifyToken = require('../JWT');
+require('dotenv').config();
 
 const router = Router();
 
@@ -18,7 +20,7 @@ router.post('/', async (req, res) => {
                const validPassword = await bcrypt.compare(password,user.password);
                if(validPassword)
                {
-                  jwt.sign(user.dataValues, 'secretkey', (err, token) => {
+                  jwt.sign(user.dataValues, process.env.JWT_KEY, (err, token) => {
                      if (err) {
                         res.sendStatus(403);
                      } else {
@@ -38,26 +40,14 @@ router.post('/', async (req, res) => {
    }
 });
 router.get('/', verifyToken, (req, res) => {
-   jwt.verify(req.token, 'secretkey', (err, user) => {
-      if(err){
+   jwt.verify(req.token, process.env.JWT_KEY, (err, user) => {
+      if (err) {
          res.send(err.message);
-      }
-      else{
+      } else {
          res.send(user);
       }
    });
 });
 
-function verifyToken(req, res, next) {
-   const bearerHeader = req.headers['authorization'];
-   if (bearerHeader !== 'undefined') {
-      const bearer = bearerHeader.split(' ');
-      const bearerToken = bearer[1];
-      req.token = bearerToken;
-      next();
-   } else {
-      res.sendStatus(403);
-   }
-}
 
 module.exports = router;

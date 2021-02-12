@@ -5,13 +5,15 @@ const cors=require('cors')
 const login=require('./users/login');
 const register=require('./users/register')
 const paginate=require('./items/paginate')
+const cart = require('./cart/cart')
+require('dotenv').config();
 
 const app = expres();
 app.use(cors());
 
 
-var sequelize = new Sequelize('ecommerce', 'postgres', 'hacker404', {
-    host: 'localhost',
+var sequelize = new Sequelize('ecommerce', process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
     dialect: 'postgres',
     pool: {
       max: 5,
@@ -38,6 +40,7 @@ app.get('/' , async (req,res) => {
 app.use('/users/login',login)
 app.use('/users/register', register)
 app.use('/items/paginate', paginate);
+app.use('/user/cart', cart);
 app.use((req,res,next) => {
     const error=new Error("not found");
     res.status(404);

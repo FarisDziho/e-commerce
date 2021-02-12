@@ -1,17 +1,16 @@
 import { createWebHistory, createRouter } from 'vue-router';
 import Items from '../components/Items';
 import Login from '../views/Login';
-import ItemDetails from '../components/ItemDetails'
-import Profile from '../components/Profile'
-import Register from '../views/Register'
-// import store from '../store/store'
+import ItemDetails from '../components/ItemDetails';
+import Profile from '../components/Profile';
+import Register from '../views/Register';
+import Cart from '../views/Cart';
 const routes = [
    {
       path: '/',
       name: 'Items',
       component: Items,
-      query:'',
-      
+      query: '',
    },
    {
       path: '/Login',
@@ -32,6 +31,11 @@ const routes = [
       path: '/Register',
       name: 'Register',
       component: Register,
+   },
+   {
+      path: '/Cart',
+      name: 'Cart',
+      component: Cart,
    },
 ];
 

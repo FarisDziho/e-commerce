@@ -1,4 +1,5 @@
 import { USER_REQUEST, USER_SUCCSES, USER_ERROR,USER_LOGOUT } from '../actions/user';
+import {REMOVE_ALL_FROM_CART} from '../actions/cart';
 import {AUTH_LOGOUT} from '../actions/auth'
 import {reactive} from 'vue';
 
@@ -40,8 +41,8 @@ const actions = {
              dispatch(AUTH_LOGOUT);
          });
    },
-   [USER_LOGOUT] : ({commit}) => {
-      console.log("USE LOGOUT")
+   [USER_LOGOUT] : async ({dispatch,commit}) => {
+      dispatch(REMOVE_ALL_FROM_CART)
       commit(USER_LOGOUT)
    }
 };

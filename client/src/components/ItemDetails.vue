@@ -25,7 +25,7 @@
 import { useStore } from "vuex";
 import {computed} from 'vue';
 import { useRouter } from 'vue-router';
-import {TRIGGER_ANIMATION} from '../store/actions/cart'
+import {ADD_TO_CART} from '../store/actions/cart'
 
 export default {
   setup() {
@@ -43,7 +43,7 @@ export default {
         if(!isLoggedIn.value)
             router.push({name:'Login',query:{redirect:router.currentRoute.value.fullPath}});
         // console.log(router.currentRoute.value);
-        store.dispatch(TRIGGER_ANIMATION)
+        store.dispatch(ADD_TO_CART,item);
     }
    
 

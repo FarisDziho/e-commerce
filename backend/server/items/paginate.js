@@ -3,15 +3,9 @@ const Sequelize = require('sequelize');
 const {Op} = require('sequelize');
 const { Item } = require('../../models');
 const paginate = require('jw-paginate');
-const {Cart} = require('../../models')
-
-
-
 
 const router = Router();
 router.get('/' ,async (req,res) => {
-    await Cart.findAll({include:Item})
-    .then(res => console.log(res[0].Item.dataValues))
     const limit = 8;
     const page=parseInt(req.query.page) || 1;
     const category = req.query.category;

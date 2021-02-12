@@ -40,7 +40,6 @@ export default {
         watch(() => route.query.category, async (category) => {
         if(category)
             store.dispatch(SET_CATEGORY,category)
-            console.log(store.state);
             await store.dispatch(LOAD_ITEMS)
             router.push({name:'Items'})
         })

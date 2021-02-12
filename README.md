@@ -1,2 +1,2 @@
 # e-commerce
-simple e-commerce web app
+Full stack e-commerce web app

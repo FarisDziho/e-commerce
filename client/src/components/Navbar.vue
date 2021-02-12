@@ -32,23 +32,27 @@
       </li>
       <li>
         <div class="icons">
-          <svg
-            v-if="isLoggedIn"
-            viewBox="0 0 24 24"
-            width="24"
-            height="24"
-            stroke="currentColor"
-            stroke-width="2"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="cartIcon"
-            v-bind:class="{animate: animate}"
-          >
-            <circle cx="9" cy="21" r="1" />
-            <circle cx="20" cy="21" r="1" />
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-          </svg>
+          <div class="cartIconWrapper">
+            <router-link to="/Cart">
+              <svg
+                v-if="isLoggedIn"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="cartIcon"
+                v-bind:class="{animate: animate}"
+              >
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+            </svg>
+            </router-link>
+          </div>
           <div class="dropdown">
             <button class="dropbtn">
               <svg
@@ -102,7 +106,6 @@ export default {
     };
 
     const user = computed(() => {
-      // console.log(store.getters.account);
       return store.getters.account;
     });
 
@@ -116,7 +119,6 @@ export default {
       () => route.query.category,
       async category => {
         if (category) store.dispatch(SET_CATEGORY, category);
-        console.log(store.state);
         await store.dispatch(LOAD_ITEMS);
         router.push({ name: "Items" });
       }
@@ -206,12 +208,19 @@ export default {
 .icons {
   display: flex;
   justify-items: center;
+  align-content: center;
+}
+.cartIconWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
 .cartIcon {
   color: white;
-  margin-right: 10px;
-  position: relative;
-  margin: auto 0;
+  /* margin-right: 10px;
+  position: relative; */
+  /* margin: auto 0; */
 }
 
 .animate {

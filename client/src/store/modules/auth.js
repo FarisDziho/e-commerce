@@ -71,7 +71,7 @@ const actions = {
          });
    },
 
-   [AUTH_LOGOUT]: ({ commit, dispatch }) => {
+   [AUTH_LOGOUT]: async({ commit, dispatch }) => {
       return new Promise((resolve) => {
          commit(AUTH_LOGOUT);
          dispatch(USER_LOGOUT);

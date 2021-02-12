@@ -21,13 +21,10 @@ export default {
   },
   setup(){
     const store=useStore();
-    // const loadingAsync= computed(() => store.getters.loadingAsync)
     onBeforeMount(async () => {
       await store.dispatch(SET_CATEGORY,'all');
-      //  await store.dispatch(LOAD_ITEMS)
     })
     return {
-      // loadingAsync
     }
   }
 }

@@ -6,6 +6,7 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
+
 const db = {};
 
 let sequelize;
@@ -36,9 +37,8 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
- async function syncDatabse(){
-  console.log("hello");
- await db.sequelize.sync({force:true}).then(console.log('synced')).catch((err)=>console.log(err));
-}
-syncDatabse();
+//  async function syncDatabse(){
+//  await db.sequelize.sync({force:true}).then(console.log('synced')).catch((err)=>console.log(err));
+// }
+// syncDatabse();
 module.exports = db;

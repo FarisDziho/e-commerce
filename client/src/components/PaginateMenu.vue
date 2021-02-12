@@ -35,10 +35,8 @@ export default {
             handler(page)
             {
                 page=parseInt(page) || 1;
-                console.log("paginateMenu");
                 // if(page !== this.pager.currentPage)
-                    this.$store.dispatch(LOAD_ITEMS,page)
-                    
+                this.$store.dispatch(LOAD_ITEMS,page)
             }
 
         }
