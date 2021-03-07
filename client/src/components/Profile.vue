@@ -4,6 +4,7 @@
         <div class="name">{{user.name}}</div>
         <div class="email">{{user.email}}</div>
         <div class="country">Bosnia and Herzegovina</div>
+        <div class="name">{{user.balance}}</div>
     </div>
 </template>
 

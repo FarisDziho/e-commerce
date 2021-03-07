@@ -16,7 +16,6 @@ router.post('/', async (req, res) => {
       });
       if(user)
          {     
-               
                const validPassword = await bcrypt.compare(password,user.password);
                if(validPassword)
                {

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Cart);
+      User.hasMany(models.Cart, { as: 'User'});
     }
   };
   User.init(
@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
            type: DataTypes.STRING,
            allowNull: false,
         },
+        balance:{
+           type:DataTypes.DOUBLE,
+            allowNull:true,
+        }
      },
      {
         sequelize,

@@ -4,14 +4,20 @@
         <div  v-for="item in cartItems" :key="item.id">
             <CartItem v-bind:item="item"/>
         </div>
-        <div v-if="cartItems.length" class="checkoutButton">
-            Proceed to checkout
+        <div class="underCart">
+            <div v-if="cartItems.length" class="checkoutButton" v-on:click="proceedToCheckout">
+                Proceed to checkout
+            </div>
+            <div class="totalCost">
+                <h4 v-if="totalCost > 0">Total cost: <span> {{totalCost}}$</span></h4>
+            </div> 
         </div>
     </div>
 </template>
 
 <script>
 import CartItem from '../components/CartItem'
+import {PROCEED_TO_CHECKOUT} from '../store/actions/cart'
 export default {
     name:'Cart',
     components:{
@@ -20,21 +26,36 @@ export default {
     computed:{
         cartItems(){
             return this.$store.getters.getCartItems;
+        },
+        totalCost(){
+            return this.$store.getters.getTotalCost 
         }
     },
+    methods:{
+        proceedToCheckout(){
+            this.$store.dispatch(PROCEED_TO_CHECKOUT);
+        }
+    }
     
 
 }
 
 </script>
 
-<style>
+<style scoped>
 .wrapper{
     padding:20px;
 }
+.underCart{
+    display: flex;
+    justify-content: space-between;
+    margin-top:10px;
+}
+.totalCost span{
+    color:red;
+}
 .checkoutButton{
     display: inline-block;
-    margin-top:20px;
     background-color:rgb(2, 98, 116);
     color:white;
     padding:20px 20px;
@@ -44,6 +65,5 @@ export default {
 }
 .checkoutButton:hover{
     background-color:rgb(2, 71, 83);
-
 }
 </style>

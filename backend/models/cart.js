@@ -10,11 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Cart.belongsTo(models.User);
+      Cart.belongsTo(models.User, {as:'User'});
     }
   };
   Cart.init({
-    items: DataTypes.TEXT
+    items: DataTypes.TEXT,
+    purchaseCost:DataTypes.DOUBLE,
+    datePurchased:DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Cart',

@@ -1,8 +1,0 @@
-{
-    "vue3snippets.enable-compile-vue-file-on-did-save-code": false,
-    "editor.fontSize": 15,
-    "workbench.colorTheme": "Seti Monokai",
-    "workbench.preferredDarkColorTheme": "Just Black",
-    "workbench.preferredHighContrastColorTheme": "Just Black",
-    "editor.formatOnPaste": true
-}

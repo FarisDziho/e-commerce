@@ -6,6 +6,7 @@ const login=require('./users/login');
 const register=require('./users/register')
 const paginate=require('./items/paginate')
 const cart = require('./cart/cart')
+const transaction = require('./users/transaction')
 require('dotenv').config();
 
 const app = expres();
@@ -23,8 +24,6 @@ var sequelize = new Sequelize('ecommerce', process.env.DB_USER, process.env.DB_P
     port:5432
   });
 
-
-
 app.use(bodyParser.json());
 
 app.get('/' , async (req,res) => {
@@ -41,6 +40,7 @@ app.use('/users/login',login)
 app.use('/users/register', register)
 app.use('/items/paginate', paginate);
 app.use('/user/cart', cart);
+app.use('/user/transaction', transaction);
 app.use((req,res,next) => {
     const error=new Error("not found");
     res.status(404);

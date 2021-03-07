@@ -5,25 +5,16 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const router = Router();
 
-router.post('/',verifyToken,async (req,res) =>{
-    console.log(req.body);
+router.post('/',verifyToken,async (req,res) =>{    
     const user = jwt.verify(req.token, process.env.JWT_KEY);
-    var item = JSON.stringify(req.body);
-    const cart =await Cart.findOne({
-        where:{UserId:user.id}
-    })
-    if(cart)
-    {
-        cart.items+=item;
-        await cart.save();
-        console.log(cart);
-    }
-    else
-    {
-        const cartItem =await Cart.create({UserId:user.id,items:item});
-    }
-    // console.log(cartItem);
-    res.json({message:"uspjesno dodan item"});
+    const { cartItems, purchaseCost, datePurchased } = req.body;
+    const cartItem = await Cart.create({
+       UserId: user.id,
+       items: JSON.stringify(cartItems),
+       purchaseCost: purchaseCost,
+       datePurchased: datePurchased
+    });
+    res.json({message:"kupovina uspjesno obavljena"})
 
 })
 
@@ -40,6 +31,12 @@ router.get('/',verifyToken,async (req,res) =>{
     
     const item = JSON.parse(itemStrigify);
     console.log(item);
+})
+router.post('/purchase', verifyToken, async(req,res)=>{
+    const user = jwt.verify(req.token, process.env.JWT_KEY);
+    console.log(user.balance);
+    console.log(req.body.purchaseCost);
+    res.json({message:"hello"});
 })
 
 module.exports=router;

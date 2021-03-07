@@ -52,8 +52,6 @@ export default {
   border:1px solid;
   border-color: #DDD;
   
-  
-
 }
 .container {
   width:210px;
